@@ -1,0 +1,32 @@
+ps -aux --> Get all running process
+
+ps -aux|grep gunicorn --> Filter running process with spesific keyword
+
+sudo kill process_id --> Kill one process
+
+sudo kill -9 process_id --> Force kill one process
+
+netstat -nltp --> Get working port stattus
+
+chmod +x ..file.. --> Activate bash script
+
+pip install -r requirements.txt --no-cache-dir --> Force install to pip
+
+nautilus --> To open file explorer
+
+
+curl GET http://api.finfi.app/api/
+
+tail -n 100 history.txt --> to view file last n line
+
+tail -f history.txt --> to view file ontime
+
+find . | \
+  grep -E "(__pycache__|\.pyc$)" | \
+  xargs rm -rf
+
+
+
+
+sudo apt-get purge nginx nginx-common
+sudo apt-get autoremove

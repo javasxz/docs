@@ -1,0 +1,20 @@
+psql postgres
+
+\du  -> show all users
+\l - show all database
+
+CREATE USER user WITH LOGIN PASSWORD ‘password’;
+ALTER ROLE <user_name> SUPERUSER;
+ALTER USER user CREATDB;
+
+
+CREATE DATABASE yourdbname;
+
+CREATE USER youruser WITH ENCRYPTED PASSWORD 'yourpass';
+
+
+GRANT ALL PRIVILEGES ON DATABASE yourdbname TO youruser;
+
+
+
+# DATABASE_URL=postgres://postgres:BZuvmqWmhtJAS77N@database-1.cnveblg5re2p.us-east-1.rds.amazonaws.com:5432/gangup

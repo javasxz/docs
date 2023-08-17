@@ -1,0 +1,15 @@
+sudo scp -i id_rsa root@206.189.139.150:/home/divya/CricketQuiz/db.json .
+
+sudo scp -i id_rsa root@206.189.139.150:/home/divya/CricketQuiz/db.json /local/javas/Downlaods
+
+id_rsa -- perm file
+root -- user
+206.189.139.150 --host
+
+
+
+sudo scp -i gangupp-dev-og.pem ubuntu@3.108.55.149:/var/log/gangup.out.log .
+
+
+Copy file local system to remote server
+scp /Users/psn/Desktop/t/db.sqlite3 ubuntu@52.3.102.30:/home/ubuntu/qsheen/db.sqlite3 -i qsheen.pem

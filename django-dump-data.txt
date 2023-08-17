@@ -1,0 +1,17 @@
+https://www.coderedcorp.com/blog/how-to-dump-your-django-database-and-load-it-into-/
+
+python manage.py dumpdata --natural-foreign --natural-primary -e contenttypes -e auth.Permission --indent 2 > dump.json
+
+python manage.py dumpdata courses --indent=2 --output=dev_db_backup.json
+python manage.py dumpdata --indent=2 --output=db_backup.json
+python manage.py loaddata dev_db_backup.json
+
+
+python manage.py dumpdata funawards.Content --indent=2 --output=content.json
+
+python manage.py loaddata content.json
+
+
+python manage.py dumpdata funawards.Award --indent=2 --output=award.json
+
+python manage.py loaddata award.json

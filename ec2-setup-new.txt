@@ -1,0 +1,12 @@
+sudo apt-get update
+
+git clone
+create .env file
+
+sudo apt-get install python3-venv
+sudo apt install build-essential
+python3 -m venv env
+
+pip install -r requirement.txt
+
+sudo apt install nginx

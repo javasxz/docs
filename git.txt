@@ -1,0 +1,54 @@
+1.Show all branches (*indicate currect branch)
+=> git branch
+
+2.Create new branch
+=> git branch <branch name>
+
+3.Checkout to another branch
+=> git checkout <branch name>
+
+4.Merge one branch to current branch
+=> git merge <branch name>
+
+git remote set-url origin https://javaskm:token@github.com/javaskm/reponame.git
+
+git clone https://username:password@github.com/username/repository.git
+git clone https://username@github.com/username/repository.git
+
+
+Git stash save “”
+Git stash list
+Git stash apply $stashId
+Git stash pop —> remove last(latest) one
+Git stash drop $stashId —> Delete one stash
+Git stash clear —> clear all stash
+
+
+
+git clone https://username:password@github.com/username/repository.git
+
+
+Git cheery-pick  commit code
+Git push 
+
+git cherry-pick --abort
+
+Git reset, revert, rebase
+
+
+
+
+Go to main branch(or develop)
+Git pull that branch
+Then checkout to working branch
+Then merge(manually)
+Git commit  Git push branch
+
+
+
+1. Create branch
+--- git branch <name>
+2. Delete local branch
+--- git branch --delete <name>
+3. Merge
+--- 

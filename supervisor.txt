@@ -1,0 +1,9 @@
+sudo supervisorctl status
+sudo supervisorctl restart all
+3.To see logs on realtime
+    root$ cd /var/log/celery/ -- Clery log location
+    tail -f gunicorn_supervisor.log
+    tail -n 30 gunicorn_supervisor.log(to show last n line log)
+4.update supervisor config
+    sudo supervisorctl reread
+    sudo supervisorctl update

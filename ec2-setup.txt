@@ -1,0 +1,135 @@
+Create an instance(Ubundu, Windos,..etc)
+
+chmod 400 "ssh key file name.perm"
+ssh -i "ssh key file name.perm" ubuntu@127.0.0.1
+
+1- sudo apt-get update
+2- git clone http://....git location...
+3- create .env file
+
+4- Create virtual env
+---sudo apt install python3.11-venv
+---python3 -m venv venv
+---source venv/bin/activate
+
+pip install -r requirement.txt
+
+
+sudo apt install nginx
+cd /etc/nginx/sites-available/
+sudo touch django.conf
+sudo nano django.conf
+===================================================
+server {
+    listen 80;
+    server_name 13.234.179.0;
+    client_max_body_size 1G;
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/ubuntu/easify_task/app.sock;
+    }
+    location /static/ {
+        autoindex on;
+        alias /home/ubuntu/easify_task/static/;
+    }
+}
+===================================================
+
+sudo ln -s ../sites-available/django.conf
+
+sudo nginx -t
+
+sudo systemctl start nginx
+
+sudo systemctl status nginx
+
+sudo apt install npm
+
+
+
+Add Http request to Inbound rule
+
+    
+12.create start.sh file(for handle gunicorn)
+    - touch start.sh
+        =>.........
+    - sudo +x start.sh
+
+14.start gunicorn
+    - pm2 start start.sh
+    - pm2 ls
+    - pm2 log ..id..
+
+
+sudo apt update && sudo apt install supervisor
+
+cd /etc/supervisor/conf.d/
+
+sudo touch gunicorn.conf
+
+sudo nano gunicorn.conf
+========================
+[program:gunicorn]
+command=/home/ubuntu/env/bin/gunicorn --workers 4 --bind unix:/home/ubuntu/easify_task/app.sock config.wsgi:application
+directory=/home/ubuntu/easify_task
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/gunicorn.err.log
+stdout_logfile=/var/log/gunicorn.out.log
+
+[group:wsgi]
+programs:gunicorn
+==================
+
+sudo touch celery.conf
+
+sudo nano celery.conf
+===================
+; ==================================
+; celery worker supervisor
+; ==================================
+[program:celery-beat]
+  command=/home/ubuntu/env/bin/celery -A config.celery_app beat -l info
+  directory=/home/ubuntu/easify_task
+  ;user=%(ENV_USER)s
+  user=root
+  numprocs=1
+  stdout_logfile=/var/log/celery/beat.log
+  stderr_logfile=/var/log/celery/beat.log
+  autostart=true
+  autorestart=true
+  startsecs=10
+  ; Need to wait for currently executing tasks to finish at shutdown.
+  ; Increase this if you have very long running tasks.
+  stopwaitsecs = 600
+  ; Causes supervisor to send the termination signal (SIGTERM) to the whole process group.
+  stopasgroup=true
+  ; Set Celery priority higher than default (999)
+  ; so, if rabbitmq is supervised, it will start first.
+  priority=1000
+
+[program:celery-worker]
+  command=/home/ubuntu/env/bin/celery -A config.celery_app worker -l info
+  directory=/home/ubuntu/easify_task
+  ;user=%(ENV_USER)s
+  user=root
+  numprocs=1
+  stdout_logfile=/var/log/celery/worker.log
+  stderr_logfile=/var/log/celery/worker.log
+  autostart=true
+  autorestart=true
+  startsecs=10
+  ; Need to wait for currently executing tasks to finish at shutdown.
+  ; Increase this if you have very long running tasks.
+  stopwaitsecs = 600
+  ; Causes supervisor to send the termination signal (SIGTERM) to the whole process group.
+  stopasgroup=true
+  ; Set Celery priority higher than default (999)
+  ; so, if rabbitmq is supervised, it will start first.
+  priority=1000
+
+================
+
+sudo supervisorctl reread
+sudo supervisorctl update
