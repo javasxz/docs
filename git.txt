@@ -10,7 +10,7 @@
 4.Merge one branch to current branch
 => git merge <branch name>
 
-git remote set-url origin https://javaskm:token@github.com/javaskm/reponame.git
+git remote set-url origin https://javasxz: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@github.com/javasxz/docs.git
 
 git clone https://username:password@github.com/username/repository.git
 git clone https://username@github.com/username/repository.git
